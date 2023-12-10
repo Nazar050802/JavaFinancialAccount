@@ -47,14 +47,18 @@ public class StatisticField {
     }
 
     public StatisticField(BigDecimal income, BigDecimal expense) throws InvalidStatisticField {
+        this.income = BigDecimal.ZERO;
+        this.expense = BigDecimal.ZERO;
+
         setIncome(income);
         setExpense(expense);
         updateProfitability();
     }
 
     public StatisticField() throws InvalidStatisticField {
-        setIncome(BigDecimal.ZERO);
-        setExpense(BigDecimal.ZERO);
+        this.income = BigDecimal.ZERO;
+        this.expense = BigDecimal.ZERO;
+
         updateProfitability();
     }
 

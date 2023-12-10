@@ -31,13 +31,19 @@ public class Main {
         List<Record> recordList = new ArrayList<>();
         recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "", category1, Record.RecordType.INCOME));
         recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "", category1, Record.RecordType.INCOME));
-        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "10 10 2022 10 10 23", category1, Record.RecordType.INCOME));
+        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "10 2 2022 10 10 23", category1, Record.RecordType.INCOME));
+        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "10 2 2022 10 10 23", category1, Record.RecordType.INCOME));
+        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "11 5 2022 10 10 23", category1, Record.RecordType.INCOME));
+        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "12 5 2022 10 10 23", category1, Record.RecordType.EXPENSE));
+        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "13 2 2022 10 10 23", category1, Record.RecordType.INCOME));
         recordList.add(new Record(BigDecimal.valueOf(3.1), "Record 1", "", category1, Record.RecordType.EXPENSE));
         recordList.add(new Record(BigDecimal.valueOf(3.1), "Record 1", "", category1, Record.RecordType.EXPENSE));
-        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "10 10 2021 10 10 23", category1, Record.RecordType.EXPENSE));
+        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "11 3 2021 10 10 23", category1, Record.RecordType.EXPENSE));
+        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "12 3 2021 10 10 23", category1, Record.RecordType.EXPENSE));
+        recordList.add(new Record(BigDecimal.valueOf(2.1), "Record 1", "12 3 2021 10 10 23", category1, Record.RecordType.EXPENSE));
 
         FinancialStatistic financialStatistic = new FinancialStatistic(recordList);
-        financialStatistic.getYearStatistic();
+        financialStatistic.getYearsStatistic();
 
     }
 }
