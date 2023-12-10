@@ -1,8 +1,7 @@
-package cz.cuni.mff.mozharon.financialaccounting.domain;
+package cz.cuni.mff.mozharon.financialaccounting.domain.entities;
 
 import cz.cuni.mff.mozharon.financialaccounting.config.LoggerConfig;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountException;
-import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidDateException;
 
 import java.math.BigDecimal;
 import java.util.logging.Level;

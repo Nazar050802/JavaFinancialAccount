@@ -1,4 +1,4 @@
-package cz.cuni.mff.mozharon.financialaccounting.domain;
+package cz.cuni.mff.mozharon.financialaccounting.domain.entities;
 
 public class Category  {
 

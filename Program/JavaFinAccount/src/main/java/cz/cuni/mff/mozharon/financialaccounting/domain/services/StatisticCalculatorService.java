@@ -1,5 +1,7 @@
-package cz.cuni.mff.mozharon.financialaccounting.domain;
+package cz.cuni.mff.mozharon.financialaccounting.domain.services;
 
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.StatisticField;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
 
 import java.math.BigDecimal;
@@ -7,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StatisticCalculator {
+public class StatisticCalculatorService {
 
     /**
      * Calculates and returns yearly statistics based on the provided list of records.

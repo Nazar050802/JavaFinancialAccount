@@ -1,10 +1,10 @@
 package cz.cuni.mff.mozharon;
 
 
-import cz.cuni.mff.mozharon.financialaccounting.domain.Category;
-import cz.cuni.mff.mozharon.financialaccounting.domain.DateAndTime;
-import cz.cuni.mff.mozharon.financialaccounting.domain.FinancialStatistic;
-import cz.cuni.mff.mozharon.financialaccounting.domain.Record;
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Category;
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.DateAndTime;
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.FinancialStatistic;
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
 

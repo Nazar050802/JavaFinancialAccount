@@ -1,4 +1,4 @@
-package cz.cuni.mff.mozharon.financialaccounting.domain;
+package cz.cuni.mff.mozharon.financialaccounting.domain.entities;
 
 import cz.cuni.mff.mozharon.financialaccounting.config.LoggerConfig;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;

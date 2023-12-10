@@ -1,6 +1,9 @@
-package cz.cuni.mff.mozharon.financialaccounting.domain;
+package cz.cuni.mff.mozharon.financialaccounting.domain.entities;
 
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.StatisticField;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
+import cz.cuni.mff.mozharon.financialaccounting.domain.services.StatisticCalculatorService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +22,7 @@ public class FinancialStatistic {
     }
 
     private void calculateWholeStatistics() throws InvalidStatisticField {
-        StatisticCalculator calculator = new StatisticCalculator();
+        StatisticCalculatorService calculator = new StatisticCalculatorService();
 
         this.yearsStatistic = calculator.calculateYearStatistic(records);
         this.monthsStatistic = calculator.calculateMonthStatistic(records);
