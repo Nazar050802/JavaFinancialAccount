@@ -93,6 +93,16 @@ public class DateAndTime {
         return seconds;
     }
 
+    public DateAndTime(String dateAndTime){
+        setDate(dateAndTime);
+    }
+
+    public DateAndTime(int day, int month, int year, int seconds, int minutes, int hours){
+        setDate(day, month, year, seconds, hours, minutes);
+    }
+
+    public DateAndTime(){}
+
     /**
      * <p>Sets the date and time using individual parameters, handling potential exceptions.</p>
      *
