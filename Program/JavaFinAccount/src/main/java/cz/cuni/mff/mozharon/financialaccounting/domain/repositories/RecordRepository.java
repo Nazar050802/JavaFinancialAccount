@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface RecordRepository {
 
-    List<Record> findAll();
+    Optional<List<Record>> findAll();
     Optional<Record> findById(Long id);
     void save(Record record);
     void delete(Record record);
