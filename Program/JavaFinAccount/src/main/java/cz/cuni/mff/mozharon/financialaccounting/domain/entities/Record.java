@@ -10,12 +10,6 @@ import java.util.logging.Logger;
 public class Record {
 
     private static final Logger logger = LoggerConfig.getLogger(Record.class);
-
-    public enum RecordType {
-        INCOME,
-        EXPENSE
-    }
-
     private BigDecimal amount;
 
     public BigDecimal getAmount() {
@@ -53,10 +47,10 @@ public class Record {
         return category;
     }
 
-    public Record(BigDecimal amount, String description, String dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
+    public Record(BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
         setAmount(amount);
         this.description = description;
-        this.dateAndTime = new DateAndTime(dateAndTime);
+        this.dateAndTime = dateAndTime;
         this.category = category;
         this.recordType = recordType;
     }
