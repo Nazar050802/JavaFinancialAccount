@@ -27,6 +27,12 @@ public class RecordService {
         recordRepository.save(record);
     }
 
+    public void deleteRecord(RecordDTO recordDTO) throws InvalidAmountException {
+        Record record = convertToRecordEntity(recordDTO);
+
+        recordRepository.delete(record);
+    }
+
     private Record convertToRecordEntity(RecordDTO recordDTO) throws InvalidAmountException {
 
         return new Record(

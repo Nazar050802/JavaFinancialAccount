@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Record {
-
+    private static long idCounter = 0;
     private static final Logger logger = LoggerConfig.getLogger(Record.class);
     private BigDecimal amount;
 
@@ -26,6 +26,7 @@ public class Record {
 
     }
 
+    private long id;
     private String description;
     private DateAndTime dateAndTime;
     private Category category;
@@ -53,6 +54,11 @@ public class Record {
         this.dateAndTime = dateAndTime;
         this.category = category;
         this.recordType = recordType;
+        this.id = getNextId();
+    }
+
+    private static synchronized long getNextId() {
+        return ++idCounter;
     }
 
 

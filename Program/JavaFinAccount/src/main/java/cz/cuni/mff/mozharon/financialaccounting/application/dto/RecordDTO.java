@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 public class RecordDTO {
 
+    private long id;
     private BigDecimal amount;
     private String description;
     private DateAndTimeDTO dateAndTime;

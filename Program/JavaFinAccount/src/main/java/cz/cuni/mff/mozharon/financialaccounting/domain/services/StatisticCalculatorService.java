@@ -1,6 +1,7 @@
 package cz.cuni.mff.mozharon.financialaccounting.domain.services;
 
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.RecordType;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.StatisticField;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
 
@@ -99,9 +100,9 @@ public class StatisticCalculatorService {
 
     private void updateStatisticField(StatisticField statisticField, Record record) throws InvalidStatisticField {
         BigDecimal amount = record.getAmount();
-        if (record.getRecordType() == Record.RecordType.INCOME) {
+        if (record.getRecordType() == RecordType.INCOME) {
             statisticField.setIncome(statisticField.getIncome().add(amount));
-        } else if (record.getRecordType() == Record.RecordType.EXPENSE) {
+        } else if (record.getRecordType() == RecordType.EXPENSE) {
             statisticField.setExpense(statisticField.getExpense().add(amount));
         }
     }
