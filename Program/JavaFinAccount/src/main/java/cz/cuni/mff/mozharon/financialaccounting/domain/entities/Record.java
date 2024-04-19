@@ -32,6 +32,10 @@ public class Record {
     private Category category;
     private RecordType recordType;
 
+    public long getId() {
+        return id;
+    }
+
     public RecordType getRecordType() {
         return recordType;
     }
@@ -55,6 +59,15 @@ public class Record {
         this.category = category;
         this.recordType = recordType;
         this.id = getNextId();
+    }
+
+    public Record(long id, BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
+        setAmount(amount);
+        this.description = description;
+        this.dateAndTime = dateAndTime;
+        this.category = category;
+        this.recordType = recordType;
+        this.id = id;
     }
 
     private static synchronized long getNextId() {
