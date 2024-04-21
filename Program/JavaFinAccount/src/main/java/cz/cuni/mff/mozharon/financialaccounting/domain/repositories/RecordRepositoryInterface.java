@@ -5,7 +5,7 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
 import java.util.List;
 import java.util.Optional;
 
-public interface RecordRepository {
+public interface RecordRepositoryInterface {
 
     Optional<List<Record>> findAll();
     Optional<Record> findById(Long id);

@@ -11,25 +11,37 @@ import cz.cuni.mff.mozharon.financialaccounting.infrastructure.formatters.Record
 
 import java.math.BigDecimal;
 
-public class RecordSerializer {
+public class RecordSerializer implements SerializerInterface<Record> {
 
+    @Override
     public String serialize(Record record) {
-        return record.getId() + "|" + record.getAmount() + "|" + record.getDescription() + "|" + DateAndTimeFormatter.formatForExternalUse(record.getDateAndTime()) +
-                "|" + record.getCategory() + "|" + RecordTypeFormatter.formatForExternalUse(record.getRecordType());
+        return "RECORD" + "|"
+                + record.getId() + "|"
+                + record.getAmount() + "|"
+                + cleanseField(record.getDescription()) + "|"
+                + DateAndTimeFormatter.formatForExternalUse(record.getDateAndTime()) + "|"
+                + cleanseField(record.getCategory().getName()) + "|"
+                + RecordTypeFormatter.formatForExternalUse(record.getRecordType());
     }
 
     // Deserialize a String to a Record object
+    @Override
     public Record deserialize(String data) throws InvalidAmountException, ExceptionParseRecordType {
+        final int numberToStartWith = 1;
         String[] parts = data.split("\\|");
 
-        long id = Long.parseLong(parts[0]);
-        BigDecimal amount = new BigDecimal(parts[1]);
-        String description = parts[2];
-        DateAndTime dateAndTime = DateAndTimeFormatter.parseFormatForExternalUse(parts[3]);
-        Category category = new Category(parts[4]);
-        RecordType recordType = RecordTypeFormatter.parseFormatForExternalUse(parts[5]);
+        long id = Long.parseLong(parts[numberToStartWith]);
+        BigDecimal amount = new BigDecimal(parts[numberToStartWith + 1]);
+        String description = parts[numberToStartWith + 2];
+        DateAndTime dateAndTime = DateAndTimeFormatter.parseFormatForExternalUse(parts[numberToStartWith + 3]);
+        Category category = new Category(parts[numberToStartWith + 4]);
+        RecordType recordType = RecordTypeFormatter.parseFormatForExternalUse(parts[numberToStartWith + 5]);
 
         return new Record(id, amount, description, dateAndTime, category, recordType);
     }
 
+    // Cleanses the field by replacing all '|' characters with a safe alternative
+    private String cleanseField(String field) {
+        return field.replace("|", "\\");
+    }
 }

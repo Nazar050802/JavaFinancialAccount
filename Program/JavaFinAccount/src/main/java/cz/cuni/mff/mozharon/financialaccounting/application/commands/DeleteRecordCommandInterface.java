@@ -9,16 +9,18 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountE
 
 import java.math.BigDecimal;
 
-public class AddRecordCommand implements Command {
+public class DeleteRecordCommandInterface implements CommandInterface {
+
     private RecordService recordService;
+
     private BigDecimal amount;
     private String description;
     private DateAndTime dateAndTime;
     private Category category;
     private RecordType recordType;
 
-    public AddRecordCommand(RecordService recordService, BigDecimal amount, String description,
-                            DateAndTime dateAndTime, Category category, RecordType recordType) {
+    public DeleteRecordCommandInterface(RecordService recordService, BigDecimal amount, String description,
+                                        DateAndTime dateAndTime, Category category, RecordType recordType) {
         this.recordService = recordService;
         this.amount = amount;
         this.description = description;
@@ -34,4 +36,5 @@ public class AddRecordCommand implements Command {
         Record record = new Record(amount, description, dateAndTime, category, recordType);
         recordService.addRecord(record);
     }
+
 }
