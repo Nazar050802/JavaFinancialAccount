@@ -4,6 +4,7 @@ package cz.cuni.mff.mozharon;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.*;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountException;
+import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidCategoryException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
 
 import java.math.BigDecimal;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
-    public static void main(String[] args) throws InterruptedException, InvalidAmountException, InvalidStatisticField {
+    public static void main(String[] args) throws InterruptedException, InvalidAmountException, InvalidStatisticField, InvalidCategoryException {
 
         DateAndTime dateAndTime = new DateAndTime();
 

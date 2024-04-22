@@ -1,6 +1,6 @@
 package cz.cuni.mff.mozharon.financialaccounting.application.commands;
 
-import cz.cuni.mff.mozharon.financialaccounting.application.services.RecordService;
+import cz.cuni.mff.mozharon.financialaccounting.infrastructure.repositories.InMemoryRecordRepository;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Category;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.DateAndTime;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 public class DeleteRecordCommandInterface implements CommandInterface {
 
-    private RecordService recordService;
+    private InMemoryRecordRepository inMemoryRecordRepository;
 
     private BigDecimal amount;
     private String description;
@@ -19,9 +19,9 @@ public class DeleteRecordCommandInterface implements CommandInterface {
     private Category category;
     private RecordType recordType;
 
-    public DeleteRecordCommandInterface(RecordService recordService, BigDecimal amount, String description,
+    public DeleteRecordCommandInterface(InMemoryRecordRepository inMemoryRecordRepository, BigDecimal amount, String description,
                                         DateAndTime dateAndTime, Category category, RecordType recordType) {
-        this.recordService = recordService;
+        this.inMemoryRecordRepository = inMemoryRecordRepository;
         this.amount = amount;
         this.description = description;
         this.dateAndTime = dateAndTime;
@@ -34,7 +34,7 @@ public class DeleteRecordCommandInterface implements CommandInterface {
      */
     public void execute() throws InvalidAmountException {
         Record record = new Record(amount, description, dateAndTime, category, recordType);
-        recordService.addRecord(record);
+        inMemoryRecordRepository.addRecord(record);
     }
 
 }
