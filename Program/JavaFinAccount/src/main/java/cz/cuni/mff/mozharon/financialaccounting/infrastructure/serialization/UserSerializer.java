@@ -7,6 +7,7 @@ import cz.cuni.mff.mozharon.financialaccounting.infrastructure.utils.HashingUtil
 import java.security.NoSuchAlgorithmException;
 
 public class UserSerializer implements SerializerInterface<User> {
+    public String keyWord = "USER";
 
     @Override
     public String serialize(User user) throws NoSuchAlgorithmException {

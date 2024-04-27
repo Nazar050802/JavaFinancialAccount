@@ -1,12 +1,10 @@
-package cz.cuni.mff.mozharon.financialaccounting.config;
+package cz.cuni.mff.mozharon.financialaccounting.logging;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
-import java.util.logging.Level;
-import java.util.logging.SimpleFormatter;
 
 public class LoggerConfig {
 

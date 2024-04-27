@@ -10,16 +10,12 @@ public class User {
     private String hashedLoginName;
     private String hashedPassword;
 
-    public User(String loginName, String password) throws InvalidUserException {
-        setLoginName(loginName);
-        setPassword(password);
-    }
-
     public User(String loginName, String hashedLoginName, String password, String hashedPassword) throws InvalidUserException {
-        setLoginName(loginName);
         setHashedLoginName(hashedLoginName);
+        setHashedPassword(hashedPassword);
+
+        setLoginName(loginName);
         setPassword(password);
-        setPassword(hashedPassword);
     }
 
     // Getters
@@ -38,7 +34,7 @@ public class User {
 
     // Setters
     public void setLoginName(String loginName) throws InvalidUserException{
-        if(loginName.isEmpty()){
+        if(loginName.isEmpty() && hashedLoginName.isEmpty()){
             throw new InvalidUserException("User login name length must be more than 0");
         }
         if(loginName.length() > maxLoginNameLength){
@@ -48,10 +44,10 @@ public class User {
     }
 
     public void setPassword(String password) throws InvalidUserException{
-        if(password.isEmpty()){
+        if(password.isEmpty() && hashedPassword.isEmpty()){
             throw new InvalidUserException("User password length must be more than 0");
         }
-        if(password.length() > maxLoginNameLength){
+        if(password.length() > maxPasswordLength){
             throw new InvalidUserException("User password length must be less than 40 symbols");
         }
         this.password = password;

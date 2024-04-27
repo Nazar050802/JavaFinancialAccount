@@ -2,24 +2,44 @@ package cz.cuni.mff.mozharon.financialaccounting.application.services;
 
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.User;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidUserException;
+import cz.cuni.mff.mozharon.financialaccounting.domain.repositories.UserRepositoryInterface;
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.utils.HashingUtility;
 
 import java.security.NoSuchAlgorithmException;
 
 public class UserService {
-    public User initializeUser(String loginName, String password) throws NoSuchAlgorithmException, InvalidUserException {
 
-        String hashedLoginName = HashingUtility.sha256(loginName);
-        String hashedPassword = HashingUtility.sha256(password);
+    private final UserRepositoryInterface userRepository;
 
-        return new User(loginName, hashedLoginName, password, hashedPassword);
+    public UserService(UserRepositoryInterface userRepository) {
+        this.userRepository = userRepository;
     }
 
-    public boolean checkLogin(User user, String loginName, String password) throws NoSuchAlgorithmException {
+    public User createUser(String loginName, String password) throws NoSuchAlgorithmException, InvalidUserException {
 
         String hashedLoginName = HashingUtility.sha256(loginName);
         String hashedPassword = HashingUtility.sha256(password);
 
-        return user.getHashedLoginName().equals(hashedLoginName) && user.getHashedPassword().equals(hashedPassword);
+        return this.userRepository.createUser(loginName, hashedLoginName, password, hashedPassword);
+    }
+
+    public boolean checkCredentials(String loginName, String password) throws NoSuchAlgorithmException {
+
+        String hashedLoginName = HashingUtility.sha256(loginName);
+        String hashedPassword = HashingUtility.sha256(password);
+
+        return userRepository.getUser().getHashedLoginName().equals(hashedLoginName) && userRepository.getUser().getHashedPassword().equals(hashedPassword);
+    }
+
+    public String getHashedSha1UserLoginName() throws NoSuchAlgorithmException {
+        return HashingUtility.sha1(userRepository.getUser().getLoginName());
+    }
+
+    public User getUser(){
+        return userRepository.getUser();
+    }
+
+    public void setUser(User user) {
+        userRepository.setUser(user);
     }
 }

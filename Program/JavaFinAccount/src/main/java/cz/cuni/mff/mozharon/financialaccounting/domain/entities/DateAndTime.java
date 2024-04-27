@@ -1,6 +1,6 @@
 package cz.cuni.mff.mozharon.financialaccounting.domain.entities;
 
-import cz.cuni.mff.mozharon.financialaccounting.config.LoggerConfig;
+import cz.cuni.mff.mozharon.financialaccounting.logging.LoggerConfig;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidDateException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidTimeException;
 

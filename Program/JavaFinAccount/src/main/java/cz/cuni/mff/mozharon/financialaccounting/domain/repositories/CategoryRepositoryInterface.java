@@ -12,4 +12,5 @@ public interface CategoryRepositoryInterface {
     void deleteCategoryByName(String name);
     void deleteSubCategoryFromCategoryByName(String categoryName, String subCategoryName);
     Iterable<Category> findAll();
+    Category createCategory(String name) throws InvalidCategoryException;
 }

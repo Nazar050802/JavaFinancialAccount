@@ -1,9 +1,10 @@
 package cz.cuni.mff.mozharon.financialaccounting.infrastructure.files;
 
-public class FileManager {
+import cz.cuni.mff.mozharon.financialaccounting.application.services.UserService;
+import cz.cuni.mff.mozharon.financialaccounting.infrastructure.common.ServiceContainer;
 
-    private final static String PATH_TO_STORE_SAVES = "saves/";
+public interface FileManager {
 
-    // Todo do the methods that will process file and parse it using serializers and repositories
-
+    public ServiceContainer readDataFromFile(UserService userService) throws Exception;
+    public void saveDataToFile(ServiceContainer serviceContainer) throws Exception;
 }

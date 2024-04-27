@@ -28,4 +28,16 @@ public class HashingUtility {
         }
     }
 
+    public static String sha1(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] hash = md.digest(input.getBytes(StandardCharsets.UTF_8));
+            return toHexString(hash);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("SHA-1 algorithm not found", e);
+        }
+    }
+
+
+
 }

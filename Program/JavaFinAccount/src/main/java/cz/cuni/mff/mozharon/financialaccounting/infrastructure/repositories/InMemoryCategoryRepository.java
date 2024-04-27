@@ -47,4 +47,9 @@ public class InMemoryCategoryRepository implements CategoryRepositoryInterface {
     public Iterable<Category> findAll() {
         return categories.values();
     }
+
+    @Override
+    public Category createCategory(String name) throws InvalidCategoryException {
+        return new Category(name);
+    }
 }

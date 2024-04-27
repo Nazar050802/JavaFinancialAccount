@@ -9,10 +9,12 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidCategor
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.exceptions.ExceptionParseRecordType;
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.formatters.DateAndTimeFormatter;
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.formatters.RecordTypeFormatter;
+import cz.cuni.mff.mozharon.financialaccounting.infrastructure.utils.SerializerUtils;
 
 import java.math.BigDecimal;
 
 public class RecordSerializer implements SerializerInterface<Record> {
+    public String keyWord = "RECORD";
 
     @Override
     public String serialize(Record record) {

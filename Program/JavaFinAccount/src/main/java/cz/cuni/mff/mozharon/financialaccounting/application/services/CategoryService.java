@@ -38,4 +38,8 @@ public class CategoryService {
         return categoryRepositoryInterface.findAll();
     }
 
+    public Category createCategory(String name) throws InvalidCategoryException {
+        return categoryRepositoryInterface.createCategory(name);
+    }
+
 }

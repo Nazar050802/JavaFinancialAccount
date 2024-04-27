@@ -1,10 +1,13 @@
 package cz.cuni.mff.mozharon.financialaccounting.infrastructure.repositories;
 
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Category;
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.DateAndTime;
+import cz.cuni.mff.mozharon.financialaccounting.domain.entities.RecordType;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.repositories.RecordRepositoryInterface;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
 
-import java.util.List;
+import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -28,6 +31,16 @@ public class InMemoryRecordRepository implements RecordRepositoryInterface {
     @Override
     public void deleteRecord(Record record) {
         records.remove(record.getId());
+    }
+
+    @Override
+    public Iterable<Record> findAll() {
+        return records.values();
+    }
+
+    @Override
+    public Record createRecord(BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
+        return new Record(amount, description, dateAndTime, category, recordType);
     }
 
     @Override
