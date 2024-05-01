@@ -24,8 +24,8 @@ public class InMemoryRecordRepository implements RecordRepositoryInterface {
     }
 
     @Override
-    public void addRecord(Record record) {
-        records.put(record.getId(), record);
+    public Record addRecord(Record record) {
+        return records.put(record.getId(), record);
     }
 
     @Override
@@ -39,8 +39,13 @@ public class InMemoryRecordRepository implements RecordRepositoryInterface {
     }
 
     @Override
-    public Record createRecord(BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
-        return new Record(amount, description, dateAndTime, category, recordType);
+    public int getLastId() {
+        return records.size();
+    }
+
+    @Override
+    public Record createRecord(int id, BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
+        return new Record(id, amount, description, dateAndTime, category, recordType);
     }
 
     @Override

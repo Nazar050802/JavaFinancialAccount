@@ -42,4 +42,16 @@ public class UserService {
     public void setUser(User user) {
         userRepository.setUser(user);
     }
+
+    public String getLoginName() {
+        return userRepository.getUser().getLoginName();
+    }
+
+    public void setLoginName(String loginName) throws InvalidUserException {
+        userRepository.getUser().setLoginName(loginName);
+    }
+
+    public void setPassword(String password) throws InvalidUserException {
+        userRepository.getUser().setPassword(password);
+    }
 }

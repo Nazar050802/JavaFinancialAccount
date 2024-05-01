@@ -35,7 +35,8 @@ public class FileManagerMyOwnFileFormat implements FileManager {
         ServiceContainer serviceContainer = getServiceContainer();
 
         if(!FileUtility.fileExists(filePath)){
-            FileUtility.createNewFile(filePath);
+            FileUtility.createNewFile(filePath, PATH_TO_STORE_SAVES);
+            serviceContainer.getUserService().setUser(userServiceWithCurrentCredentials.getUser());
         }
         else {
             int numberOfLinesInFile = FileUtility.countLines(filePath);
@@ -85,8 +86,8 @@ public class FileManagerMyOwnFileFormat implements FileManager {
             throw new ExceptionIncorrectCredentials("Wrong credentials");
         }
 
-        serviceContainer.getUserService().getUser().setLoginName(userFromFile.getLoginName());
-        serviceContainer.getUserService().getUser().setPassword(userFromFile.getPassword());
+        serviceContainer.getUserService().setLoginName(userFromFile.getLoginName());
+        serviceContainer.getUserService().setPassword(userFromFile.getPassword());
     }
 
     private static boolean validateUserCredentials(User currentUserCredentials, UserService userService) throws NoSuchAlgorithmException {
@@ -109,11 +110,13 @@ public class FileManagerMyOwnFileFormat implements FileManager {
 
     @Override
     public void saveDataToFile(ServiceContainer serviceContainer) throws IOException, NoSuchAlgorithmException {
-        FileUtility.ensureDirectoryExists(PATH_TO_STORE_SAVES);
         String filePath = PATH_TO_STORE_SAVES + serviceContainer.getUserService().getHashedSha1UserLoginName();
 
         if(!FileUtility.fileExists(filePath)){
-            FileUtility.createNewFile(filePath);
+            FileUtility.createNewFile(filePath, PATH_TO_STORE_SAVES);
+        }
+        else {
+            FileUtility.clearFileContents(filePath);
         }
 
         // Firstly, write User Data to file

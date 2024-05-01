@@ -7,27 +7,18 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.repositories.CategoryRepo
 import java.util.Optional;
 
 public class CategoryService {
-
     private final CategoryRepositoryInterface categoryRepositoryInterface;
 
-    public CategoryService(CategoryRepositoryInterface CategoryRepositoryInterface) {
-        this.categoryRepositoryInterface = CategoryRepositoryInterface;
+    public CategoryService(CategoryRepositoryInterface categoryRepositoryInterface) {
+        this.categoryRepositoryInterface = categoryRepositoryInterface;
     }
 
     public void addCategory(Category category) {
         categoryRepositoryInterface.addCategory(category);
     }
 
-    public void addSubCategoryToCategoryByName(String categoryName, Category subCategory) throws InvalidCategoryException {
-        categoryRepositoryInterface.addSubCategoryToCategoryByName(categoryName, subCategory);
-    }
-
     public Optional<Category> getCategory(String name) {
         return categoryRepositoryInterface.findCategoryByName(name);
-    }
-
-    public void deleteSubCategoryFromCategoryByName(String categoryName, String subCategoryName){
-        categoryRepositoryInterface.deleteSubCategoryFromCategoryByName(categoryName, subCategoryName);
     }
 
     public void deleteCategory(String name) {
@@ -41,5 +32,4 @@ public class CategoryService {
     public Category createCategory(String name) throws InvalidCategoryException {
         return categoryRepositoryInterface.createCategory(name);
     }
-
 }

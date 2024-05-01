@@ -133,10 +133,10 @@ public class DateAndTime {
     /**
      * <p>
      * Sets the date and time based on a string representation.
-     * Expects a string with six <b>space-separated parameters:</b> <b>day, month, year, hour, minute, second</b>.
+     * Expects a string with six <b>space-separated parameters:</b> <b>day, month, year, hour, minute</b>.
      * If the string is empty, uses current date and time as default values.
      * </p>
-     * @param inputDate A string representation of the date. Example: "25 12 2015 12 32 59""
+     * @param inputDate A string representation of the date. Example: "25 12 2015 12 32 00""
      * @throws NumberFormatException If the input has an incorrect number of parameters.
      */
     public void setDate(String inputDate){

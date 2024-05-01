@@ -11,17 +11,8 @@ public class InMemoryCategoryRepository implements CategoryRepositoryInterface {
     private final ConcurrentHashMap<String, Category> categories = new ConcurrentHashMap<>();
 
     @Override
-    public void addCategory(Category category) {
-        categories.put(category.getName(), category);
-    }
-
-    @Override
-    public void addSubCategoryToCategoryByName(String categoryName, Category subCategory) throws InvalidCategoryException {
-        Optional<Category> optionalCategory = findCategoryByName(categoryName);
-        if(optionalCategory.isPresent()){
-            Category category = optionalCategory.get();
-            category.addSubcategory(subCategory);
-        }
+    public Category addCategory(Category category) {
+        return categories.put(category.getName(), category);
     }
 
     @Override
@@ -35,21 +26,12 @@ public class InMemoryCategoryRepository implements CategoryRepositoryInterface {
     }
 
     @Override
-    public void deleteSubCategoryFromCategoryByName(String categoryName, String subCategoryName) {
-        Optional<Category> optionalCategory = findCategoryByName(categoryName);
-        if(optionalCategory.isPresent()){
-            Category category = optionalCategory.get();
-            category.getSubcategories().removeIf(sub -> sub.getName().equals(subCategoryName));
-        }
-    }
-
-    @Override
     public Iterable<Category> findAll() {
         return categories.values();
     }
 
     @Override
     public Category createCategory(String name) throws InvalidCategoryException {
-        return new Category(name);
+        return addCategory(new Category(name));
     }
 }

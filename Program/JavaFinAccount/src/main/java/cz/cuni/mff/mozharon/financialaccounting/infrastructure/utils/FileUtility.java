@@ -37,7 +37,8 @@ public class FileUtility {
         return file.exists();
     }
 
-    public static boolean createNewFile(String filePath) throws IOException {
+    public static boolean createNewFile(String filePath, String rootPath) throws IOException {
+        ensureDirectoryExists(rootPath);
         File file = new File(filePath);
         return file.createNewFile();
     }
@@ -80,5 +81,10 @@ public class FileUtility {
             }
         }
         return null; // Return null if the line number is not found
+    }
+
+    public static void clearFileContents(String filePath) throws IOException {
+        try (FileWriter writer = new FileWriter(filePath, false)) {
+        }
     }
 }

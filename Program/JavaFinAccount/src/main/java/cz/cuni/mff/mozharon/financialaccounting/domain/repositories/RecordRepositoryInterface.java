@@ -11,13 +11,15 @@ import java.util.Optional;
 
 public interface RecordRepositoryInterface {
 
-    Record createRecord(BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException;
+    Record createRecord(int id, BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException;
 
     Optional<Record> findById(Long id);
-    void addRecord(Record record);
+    Record addRecord(Record record);
     void deleteRecord(Record record);
 
     Iterable<Record> findAll();
+
+    int getLastId();
 
     //List<Record> findByDateRange(DateAndTime start, DateAndTime end);
 

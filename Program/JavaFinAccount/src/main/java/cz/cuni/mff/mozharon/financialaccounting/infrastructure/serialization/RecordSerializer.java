@@ -18,7 +18,7 @@ public class RecordSerializer implements SerializerInterface<Record> {
 
     @Override
     public String serialize(Record record) {
-        return "RECORD" + "|"
+        return keyWord + "|"
                 + record.getId() + "|"
                 + record.getAmount() + "|"
                 + SerializerUtils.cleanseField(record.getDescription()) + "|"
@@ -27,9 +27,8 @@ public class RecordSerializer implements SerializerInterface<Record> {
                 + RecordTypeFormatter.formatForExternalUse(record.getRecordType());
     }
 
-    // Deserialize a String to a Record object
     @Override
-    public Record deserialize(String data) throws InvalidAmountException, ExceptionParseRecordType, InvalidCategoryException {
+    public Record deserialize(String data) throws InvalidAmountException, InvalidCategoryException, ExceptionParseRecordType {
         final int numberToStartWith = 1; // Also number of help words before first real data
         String[] parts = data.split("\\|");
 
@@ -37,6 +36,7 @@ public class RecordSerializer implements SerializerInterface<Record> {
         BigDecimal amount = new BigDecimal(parts[numberToStartWith + 1]);
         String description = parts[numberToStartWith + 2];
         DateAndTime dateAndTime = DateAndTimeFormatter.parseFormatForExternalUse(parts[numberToStartWith + 3]);
+
         Category category = new Category(parts[numberToStartWith + 4]);
         RecordType recordType = RecordTypeFormatter.parseFormatForExternalUse(parts[numberToStartWith + 5]);
 
