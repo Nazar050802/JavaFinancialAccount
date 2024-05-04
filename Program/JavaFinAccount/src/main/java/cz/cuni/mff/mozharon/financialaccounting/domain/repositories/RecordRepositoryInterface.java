@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public interface RecordRepositoryInterface {
 
-    Record createRecord(int id, BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException;
+    Record createRecord(int id, Double amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException;
 
     Optional<Record> findById(Long id);
     Record addRecord(Record record);

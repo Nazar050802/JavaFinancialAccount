@@ -4,6 +4,7 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountE
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidCategoryException;
 import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.AddRecordController;
 import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.MainMenuController;
+import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.ShowRecordsController;
 
 import java.util.Scanner;
 
@@ -12,10 +13,12 @@ public class TUIMainMenu {
 
     private MainMenuController mainMenuController;
     private AddRecordController addRecordController;
+    private ShowRecordsController showRecordsController;
 
-    public TUIMainMenu(MainMenuController mainMenuController, AddRecordController addRecordController) {
+    public TUIMainMenu(MainMenuController mainMenuController, AddRecordController addRecordController, ShowRecordsController showRecordsController) {
         this.mainMenuController = mainMenuController;
         this.addRecordController = addRecordController;
+        this.showRecordsController = showRecordsController;
     }
 
     public void mainMenu() throws InvalidCategoryException, InvalidAmountException {
@@ -76,8 +79,6 @@ public class TUIMainMenu {
     }
 
     private void addRecord() throws InvalidCategoryException, InvalidAmountException {
-        System.out.println("Function to add a new record.");
-
         TUIClearConsole.clearConsole();
 
         TUIAddRecord tuiAddRecord = new TUIAddRecord(addRecordController);
@@ -85,9 +86,11 @@ public class TUIMainMenu {
 
     }
 
-    private static void showRecords() {
-        System.out.println("Function to show all records.");
-        // Implementation of showing all records
+    private void showRecords() {
+        TUIClearConsole.clearConsole();
+
+        TUIShowRecords tuiShowRecords = new TUIShowRecords(showRecordsController);
+        tuiShowRecords.showMenu();
     }
 
     private static void showStatistics() {

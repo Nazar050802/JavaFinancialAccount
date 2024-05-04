@@ -7,17 +7,16 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.RecordType;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountException;
 
-import java.math.BigDecimal;
 
 public class AddRecordCommandInterface implements CommandInterface {
     private InMemoryRecordRepository inMemoryRecordRepository;
-    private BigDecimal amount;
+    private Double amount;
     private String description;
     private DateAndTime dateAndTime;
     private Category category;
     private RecordType recordType;
 
-    public AddRecordCommandInterface(InMemoryRecordRepository inMemoryRecordRepository, BigDecimal amount, String description,
+    public AddRecordCommandInterface(InMemoryRecordRepository inMemoryRecordRepository, Double amount, String description,
                                      DateAndTime dateAndTime, Category category, RecordType recordType) {
         this.inMemoryRecordRepository = inMemoryRecordRepository;
         this.amount = amount;

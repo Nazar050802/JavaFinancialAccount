@@ -133,7 +133,7 @@ public class DateAndTime {
     /**
      * <p>
      * Sets the date and time based on a string representation.
-     * Expects a string with six <b>space-separated parameters:</b> <b>day, month, year, hour, minute</b>.
+     * Expects a string with six <b>space-separated parameters:</b> <b>day, month, year, second, minute, hour</b>.
      * If the string is empty, uses current date and time as default values.
      * </p>
      * @param inputDate A string representation of the date. Example: "25 12 2015 12 32 00""
@@ -170,5 +170,4 @@ public class DateAndTime {
         setDate(arrOfDateInt[0],  arrOfDateInt[1], arrOfDateInt[2], arrOfDateInt[3], arrOfDateInt[4], arrOfDateInt[5]);
 
     }
-
 }

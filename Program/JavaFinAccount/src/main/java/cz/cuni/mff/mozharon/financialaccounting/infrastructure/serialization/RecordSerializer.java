@@ -11,8 +11,6 @@ import cz.cuni.mff.mozharon.financialaccounting.infrastructure.formatters.DateAn
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.formatters.RecordTypeFormatter;
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.utils.SerializerUtils;
 
-import java.math.BigDecimal;
-
 public class RecordSerializer implements SerializerInterface<Record> {
     public String keyWord = "RECORD";
 
@@ -33,7 +31,7 @@ public class RecordSerializer implements SerializerInterface<Record> {
         String[] parts = data.split("\\|");
 
         long id = Long.parseLong(parts[numberToStartWith]);
-        BigDecimal amount = new BigDecimal(parts[numberToStartWith + 1]);
+        Double amount = Double.parseDouble(parts[numberToStartWith + 1]);
         String description = parts[numberToStartWith + 2];
         DateAndTime dateAndTime = DateAndTimeFormatter.parseFormatForExternalUse(parts[numberToStartWith + 3]);
 

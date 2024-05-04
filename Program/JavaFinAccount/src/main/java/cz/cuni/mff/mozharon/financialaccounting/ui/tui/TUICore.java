@@ -3,10 +3,7 @@ package cz.cuni.mff.mozharon.financialaccounting.ui.tui;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidCategoryException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidUserException;
-import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.AddRecordController;
-import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.ControllerCore;
-import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.LoginController;
-import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.MainMenuController;
+import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.*;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.Executors;
@@ -18,6 +15,7 @@ public class TUICore {
     final static int TIME_SHOW_FailedLogin = 2;
     final static int TIME_SHOW_SuccessLogin = 2;
     final static int TIME_SHOW_NEW_RECORD = 2;
+
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidUserException, InvalidCategoryException, InvalidAmountException {
 
         TUIHelloMessage.main(args);
@@ -38,8 +36,9 @@ public class TUICore {
 
         MainMenuController mainMenuController = new MainMenuController(controllerCore);
         AddRecordController addRecordController = new AddRecordController(controllerCore);
+        ShowRecordsController showRecordsController = new ShowRecordsController(controllerCore);
 
-        TUIMainMenu tuiMainMenu = new TUIMainMenu(mainMenuController, addRecordController);
+        TUIMainMenu tuiMainMenu = new TUIMainMenu(mainMenuController, addRecordController, showRecordsController);
         tuiMainMenu.mainMenu();
     }
 

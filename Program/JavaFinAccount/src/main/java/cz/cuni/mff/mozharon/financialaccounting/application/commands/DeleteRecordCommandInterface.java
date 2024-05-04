@@ -13,13 +13,13 @@ public class DeleteRecordCommandInterface implements CommandInterface {
 
     private InMemoryRecordRepository inMemoryRecordRepository;
 
-    private BigDecimal amount;
+    private Double amount;
     private String description;
     private DateAndTime dateAndTime;
     private Category category;
     private RecordType recordType;
 
-    public DeleteRecordCommandInterface(InMemoryRecordRepository inMemoryRecordRepository, BigDecimal amount, String description,
+    public DeleteRecordCommandInterface(InMemoryRecordRepository inMemoryRecordRepository, Double amount, String description,
                                         DateAndTime dateAndTime, Category category, RecordType recordType) {
         this.inMemoryRecordRepository = inMemoryRecordRepository;
         this.amount = amount;

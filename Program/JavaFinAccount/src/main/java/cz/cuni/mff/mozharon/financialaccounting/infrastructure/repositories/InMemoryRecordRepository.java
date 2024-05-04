@@ -44,7 +44,7 @@ public class InMemoryRecordRepository implements RecordRepositoryInterface {
     }
 
     @Override
-    public Record createRecord(int id, BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
+    public Record createRecord(int id, Double amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
         return new Record(id, amount, description, dateAndTime, category, recordType);
     }
 

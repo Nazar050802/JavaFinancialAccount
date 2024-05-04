@@ -6,7 +6,6 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.entities.RecordType;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidCategoryException;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -25,7 +24,7 @@ public class AddRecordController {
         controllerCore.serviceContainer.getCategoryService().createCategory(categoryName);
     }
 
-    public void addRecord(BigDecimal amount, String description, String dateAndTime, String category, String recordType) throws InvalidAmountException, InvalidCategoryException {
+    public void addRecord(Double amount, String description, String dateAndTime, String category, String recordType) throws InvalidAmountException, InvalidCategoryException {
         Category categoryForUse = getCategory(category);
 
         controllerCore.serviceContainer.getRecordService().createRecord(amount, description, dateAndTime, categoryForUse, recordType);

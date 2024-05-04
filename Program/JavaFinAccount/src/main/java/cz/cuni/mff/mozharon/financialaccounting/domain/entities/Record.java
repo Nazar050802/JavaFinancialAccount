@@ -10,15 +10,15 @@ import java.util.logging.Logger;
 public class Record {
     private static long idCounter = 0;
     private static final Logger logger = LoggerConfig.getLogger(Record.class);
-    private BigDecimal amount;
+    private Double amount;
 
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    private void setAmount(BigDecimal amount) throws InvalidAmountException {
+    private void setAmount(Double amount) throws InvalidAmountException {
 
-        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+        if (amount <= 0) {
             logger.log(Level.WARNING, "The amount has invalid value. It must be greater than 0.");
             throw new InvalidAmountException("The amount has invalid value. It must be greater than 0.");
         }
@@ -52,7 +52,7 @@ public class Record {
         return category;
     }
 
-    public Record(BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
+    public Record(Double amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
         setAmount(amount);
         this.description = description;
         this.dateAndTime = dateAndTime;
@@ -61,7 +61,7 @@ public class Record {
         this.id = getNextId();
     }
 
-    public Record(long id, BigDecimal amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
+    public Record(long id, Double amount, String description, DateAndTime dateAndTime, Category category, RecordType recordType) throws InvalidAmountException {
         setAmount(amount);
         this.description = description;
         this.dateAndTime = dateAndTime;

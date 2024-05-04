@@ -21,7 +21,6 @@ import cz.cuni.mff.mozharon.financialaccounting.ui.tui.TUICore;
 import cz.cuni.mff.mozharon.financialaccounting.ui.tui.TUIHelloMessage;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;

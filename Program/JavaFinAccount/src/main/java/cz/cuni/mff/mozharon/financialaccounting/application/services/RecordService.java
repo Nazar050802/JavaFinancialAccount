@@ -7,7 +7,6 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.entities.RecordType;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.repositories.RecordRepositoryInterface;
 
-import java.math.BigDecimal;
 import java.util.Optional;
 
 public class RecordService {
@@ -33,7 +32,7 @@ public class RecordService {
         return recordRepository.findAll();
     }
 
-    public Record createRecord(BigDecimal amount, String description, String dateAndTime, Category category, String recordType) throws InvalidAmountException {
+    public Record createRecord(Double amount, String description, String dateAndTime, Category category, String recordType) throws InvalidAmountException {
         return addRecord(recordRepository.createRecord(recordRepository.getLastId() + 1, amount, description, new DateAndTime(dateAndTime), category, RecordType.valueOf(recordType.toUpperCase())));
     }
 }

@@ -99,11 +99,11 @@ public class StatisticCalculatorService {
     }
 
     private void updateStatisticField(StatisticField statisticField, Record record) throws InvalidStatisticField {
-        BigDecimal amount = record.getAmount();
+        Double amount = record.getAmount();
         if (record.getRecordType() == RecordType.INCOME) {
-            statisticField.setIncome(statisticField.getIncome().add(amount));
+            statisticField.setIncome(statisticField.getIncome() + amount);
         } else if (record.getRecordType() == RecordType.EXPENSE) {
-            statisticField.setExpense(statisticField.getExpense().add(amount));
+            statisticField.setExpense(statisticField.getExpense() + amount);
         }
     }
 }

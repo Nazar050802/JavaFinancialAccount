@@ -3,23 +3,22 @@ package cz.cuni.mff.mozharon.financialaccounting.domain.entities;
 import cz.cuni.mff.mozharon.financialaccounting.logging.LoggerConfig;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
 
-import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StatisticField {
     private static final Logger logger = LoggerConfig.getLogger(StatisticField.class);
 
-    private BigDecimal income;
-    private BigDecimal expense;
-    private BigDecimal profitability;
+    private Double income;
+    private Double expense;
+    private Double profitability;
 
-    public BigDecimal getIncome() {
+    public Double getIncome() {
         return income;
     }
 
-    public void setIncome(BigDecimal income) throws InvalidStatisticField {
-        if(income.compareTo(BigDecimal.ZERO) < 0){
+    public void setIncome(Double income) throws InvalidStatisticField {
+        if(income < 0){
             logger.log(Level.WARNING, "Income cannot be negative.");
             throw new InvalidStatisticField("Income cannot be negative.");
         }
@@ -28,12 +27,12 @@ public class StatisticField {
         updateProfitability();
     }
 
-    public BigDecimal getExpense() {
+    public Double getExpense() {
         return expense;
     }
 
-    public void setExpense(BigDecimal expense) throws InvalidStatisticField {
-        if(expense.compareTo(BigDecimal.ZERO) < 0){
+    public void setExpense(Double expense) throws InvalidStatisticField {
+        if(expense < 0){
             logger.log(Level.WARNING, "Expense cannot be negative.");
             throw new InvalidStatisticField("Expense cannot be negative.");
         }
@@ -42,13 +41,13 @@ public class StatisticField {
         updateProfitability();
     }
 
-    public BigDecimal getProfitability() {
+    public Double getProfitability() {
         return profitability;
     }
 
-    public StatisticField(BigDecimal income, BigDecimal expense) throws InvalidStatisticField {
-        this.income = BigDecimal.ZERO;
-        this.expense = BigDecimal.ZERO;
+    public StatisticField(Double income, Double expense) throws InvalidStatisticField {
+        this.income = (double) 0;
+        this.expense = (double) 0;
 
         setIncome(income);
         setExpense(expense);
@@ -56,13 +55,13 @@ public class StatisticField {
     }
 
     public StatisticField() throws InvalidStatisticField {
-        this.income = BigDecimal.ZERO;
-        this.expense = BigDecimal.ZERO;
+        this.income = (double) 0;
+        this.expense = (double) 0;
 
         updateProfitability();
     }
 
     private void updateProfitability(){
-        profitability = income.subtract(expense);
+        profitability = income - expense;
     }
 }

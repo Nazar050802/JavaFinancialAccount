@@ -4,7 +4,6 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountE
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidCategoryException;
 import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.AddRecordController;
 
-import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class TUIAddRecord {
@@ -93,7 +92,7 @@ public class TUIAddRecord {
                 if (parts.length != 5) {
                     throw new IllegalArgumentException("Incorrect number of fields. Expected 5 fields. You entered: " + parts.length);
                 }
-                BigDecimal amount = new BigDecimal(parts[0].trim());
+                Double amount = Double.parseDouble(parts[0].trim());
                 String description = parts[1].trim();
                 String dateAndTime = validateAndReformatDateString(parts[2].trim());
 
@@ -114,7 +113,7 @@ public class TUIAddRecord {
     }
 
     private void addRecordWithPrompts() throws InvalidCategoryException, InvalidAmountException {
-        BigDecimal amount = getBigDecimalInput("Enter amount:");
+        Double amount = getDoubleInput("Enter amount:");
         String description = getStringInput("Enter description:");
         String dateAndTime = validateAndReformatDateString(getStringInput("Enter date and time (dd mm yyyy hh mm):"));
         String categoryName = getCategoryFromUser();
@@ -124,7 +123,7 @@ public class TUIAddRecord {
         addAndSaveRecord(amount, description, dateAndTime, categoryName, recordType);
     }
 
-    private void addAndSaveRecord(BigDecimal amount, String description, String dateAndTime, String categoryName, String recordType) throws InvalidAmountException, InvalidCategoryException {
+    private void addAndSaveRecord(Double amount, String description, String dateAndTime, String categoryName, String recordType) throws InvalidAmountException, InvalidCategoryException {
         addRecordController.addRecord(amount, description, dateAndTime, categoryName, recordType);
         addRecordController.saveData();
 
@@ -198,14 +197,31 @@ public class TUIAddRecord {
         return input;
     }
 
-    private static BigDecimal getBigDecimalInput(String prompt) {
+    private static Double getDoubleInput(String prompt) {
         System.out.print(prompt);
-        while (!scanner.hasNextBigDecimal()) {
-            scanner.next();
-            System.out.print("Invalid input. Please enter a valid number:");
+        String input = scanner.nextLine();
+        boolean flagCorrectDouble = false;
+        double result = 0.0;
+
+        while (input.isEmpty() || !flagCorrectDouble) {
+            try {
+                result = Double.parseDouble(input);
+                if(result > 0){
+                    flagCorrectDouble = true;
+                }
+            }
+            catch (NumberFormatException ignored) {}
+
+            if (!flagCorrectDouble) {
+                System.out.print("Invalid input. Please enter a valid number:");
+                input = scanner.nextLine();
+            }
         }
-        BigDecimal result = scanner.nextBigDecimal();
-        scanner.nextLine(); // consume newline
+
         return result;
+    }
+
+    private static void validateDouble() {
+
     }
 }
