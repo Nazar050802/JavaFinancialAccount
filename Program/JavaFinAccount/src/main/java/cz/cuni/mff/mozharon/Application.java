@@ -23,7 +23,9 @@ import cz.cuni.mff.mozharon.financialaccounting.ui.tui.TUIHelloMessage;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     public static void main(String[] args) throws InterruptedException, InvalidAmountException, InvalidStatisticField, InvalidCategoryException, InvalidUserException, NoSuchAlgorithmException, IOException, ExceptionIncorrectCredentials, ExceptionParseRecordType {
@@ -95,10 +97,27 @@ public class Application {
 //        ServiceContainer newServiceContainer = fileManagerMyOwnFileFormat.readDataFromFile(userService);
 //
 //        System.out.println("Tests");
-
+//
         TUICore.main(new String[]{});
 
         System.out.println("");
     }
+
+
+
+//    public static void main(String[] args) {
+//        // Using LinkedHashMap to preserve the order of insertion
+//        Map<String, Integer> data = new LinkedHashMap<>();
+//        data.put("Nov 2022", 201);
+//        data.put("Dec 2022", -150);
+//        data.put("Jan 2023", 1500);
+//
+//        int maxValue = data.values().stream()
+//                .mapToInt(Math::abs)
+//                .max()
+//                .orElse(0);
+//
+//        printGraph(data, maxValue, 15);
+//    }
 }
 

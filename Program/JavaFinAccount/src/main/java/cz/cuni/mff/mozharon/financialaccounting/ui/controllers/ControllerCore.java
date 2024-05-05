@@ -1,6 +1,7 @@
 package cz.cuni.mff.mozharon.financialaccounting.ui.controllers;
 
 import cz.cuni.mff.mozharon.financialaccounting.application.config.ServiceConfig;
+import cz.cuni.mff.mozharon.financialaccounting.application.services.StatisticsService;
 import cz.cuni.mff.mozharon.financialaccounting.application.services.UserService;
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.common.ServiceContainer;
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.files.FileManagerMyOwnFileFormat;
@@ -13,7 +14,6 @@ import java.security.NoSuchAlgorithmException;
 
 public class ControllerCore {
     public ServiceContainer serviceContainer;
-
     private InMemoryUserRepository inMemoryUserRepository;
     private InMemoryCategoryRepository inMemoryCategoryRepository;
     private InMemoryRecordRepository inMemoryRecordRepository;
@@ -28,7 +28,7 @@ public class ControllerCore {
 
     private void setServiceContainer() {
         ServiceConfig serviceConfig = new ServiceConfig(inMemoryUserRepository, inMemoryRecordRepository, inMemoryCategoryRepository);
-        this.serviceContainer = new ServiceContainer(serviceConfig.createUserService(), serviceConfig.createRecordService(), serviceConfig.createCategoryService());
+        this.serviceContainer = new ServiceContainer(serviceConfig.createUserService(), serviceConfig.createRecordService(), serviceConfig.createCategoryService(), serviceConfig.createStatisticsService());
     }
 
     public boolean tryToReadDataFromFile(){

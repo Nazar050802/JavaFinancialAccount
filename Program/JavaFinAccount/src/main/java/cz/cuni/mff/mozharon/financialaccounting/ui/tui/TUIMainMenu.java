@@ -2,9 +2,11 @@ package cz.cuni.mff.mozharon.financialaccounting.ui.tui;
 
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidCategoryException;
+import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
 import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.AddRecordController;
 import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.MainMenuController;
 import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.ShowRecordsController;
+import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.ShowStatisticsController;
 
 import java.util.Scanner;
 
@@ -14,14 +16,16 @@ public class TUIMainMenu {
     private MainMenuController mainMenuController;
     private AddRecordController addRecordController;
     private ShowRecordsController showRecordsController;
+    private ShowStatisticsController showStatisticsController;
 
-    public TUIMainMenu(MainMenuController mainMenuController, AddRecordController addRecordController, ShowRecordsController showRecordsController) {
+    public TUIMainMenu(MainMenuController mainMenuController, AddRecordController addRecordController, ShowRecordsController showRecordsController, ShowStatisticsController showStatisticsController) {
         this.mainMenuController = mainMenuController;
         this.addRecordController = addRecordController;
         this.showRecordsController = showRecordsController;
+        this.showStatisticsController = showStatisticsController;
     }
 
-    public void mainMenu() throws InvalidCategoryException, InvalidAmountException {
+    public void mainMenu() throws InvalidCategoryException, InvalidAmountException, InvalidStatisticField {
         String username = mainMenuController.getLoginName();
         displayGreeting(username);
 
@@ -93,9 +97,11 @@ public class TUIMainMenu {
         tuiShowRecords.showMenu();
     }
 
-    private static void showStatistics() {
-        System.out.println("Function to display statistics.");
-        // Implementation of displaying statistics
+    private void showStatistics() throws InvalidStatisticField {
+        TUIClearConsole.clearConsole();
+
+        TUIShowStatistics tuiShowStatistics = new TUIShowStatistics(showStatisticsController);
+        tuiShowStatistics.displayOptions();
     }
 
     private static void settings() {

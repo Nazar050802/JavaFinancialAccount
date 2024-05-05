@@ -104,7 +104,8 @@ public class FileManagerMyOwnFileFormat implements FileManager {
         return new ServiceContainer(
                 serviceConfig.createUserService(),
                 serviceConfig.createRecordService(),
-                serviceConfig.createCategoryService()
+                serviceConfig.createCategoryService(),
+                serviceConfig.createStatisticsService()
         );
     }
 

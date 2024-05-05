@@ -5,7 +5,6 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.entities.RecordType;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.StatisticField;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +66,7 @@ public class StatisticCalculatorService {
         return monthStatistics;
     }
 
+    
     /**
      * Calculates and returns daily statistics based on the provided list of records.
      *

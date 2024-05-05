@@ -2,6 +2,7 @@ package cz.cuni.mff.mozharon.financialaccounting.application.config;
 
 import cz.cuni.mff.mozharon.financialaccounting.application.services.CategoryService;
 import cz.cuni.mff.mozharon.financialaccounting.application.services.RecordService;
+import cz.cuni.mff.mozharon.financialaccounting.application.services.StatisticsService;
 import cz.cuni.mff.mozharon.financialaccounting.application.services.UserService;
 import cz.cuni.mff.mozharon.financialaccounting.domain.repositories.CategoryRepositoryInterface;
 import cz.cuni.mff.mozharon.financialaccounting.domain.repositories.RecordRepositoryInterface;
@@ -28,5 +29,9 @@ public class ServiceConfig {
 
     public CategoryService createCategoryService() {
         return new CategoryService(categoryRepository);
+    }
+
+    public StatisticsService createStatisticsService() {
+        return new StatisticsService();
     }
 }
