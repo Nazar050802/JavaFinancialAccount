@@ -37,4 +37,5 @@ After launching the application, you will be greeted by the login screen. Enter 
 ## Documentation
 
 For detailed developer documentation, refer to the `javadoc` generated files located in the [Developer Documentation](/Documentation/javadoc/index.html).
+
 For detailed user documentation use [User Documentation](/Documentation/User%20Documentation.pdf).
