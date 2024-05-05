@@ -2,6 +2,9 @@ package cz.cuni.mff.mozharon.financialaccounting.infrastructure.utils;
 
 import java.io.*;
 
+/**
+ * Utility class providing static methods for file handling operations.
+ */
 public class FileUtility {
 
     /**
@@ -12,9 +15,9 @@ public class FileUtility {
     public static boolean ensureDirectoryExists(String directoryPath) {
         File directory = new File(directoryPath);
         if (!directory.exists()) {
-            return directory.mkdirs();  // Create the directory if it doesn't exist
+            return directory.mkdirs();
         }
-        return true;  // Return true if the directory already exists
+        return true;
     }
 
     /**
@@ -37,12 +40,26 @@ public class FileUtility {
         return file.exists();
     }
 
+    /**
+     * Creates a new file at the specified path, ensuring the directory exists.
+     * @param filePath The full path to the file to create.
+     * @param rootPath The root directory to ensure exists.
+     * @return true if the file was successfully created.
+     * @throws IOException if an I/O error occurs.
+     */
     public static boolean createNewFile(String filePath, String rootPath) throws IOException {
         ensureDirectoryExists(rootPath);
         File file = new File(filePath);
         return file.createNewFile();
     }
 
+    /**
+     * Writes content to a file at the specified path.
+     * @param filePath The path to the file.
+     * @param content The content to write.
+     * @return true if the write operation was successful.
+     * @throws IOException if an I/O error occurs during writing.
+     */
     public static boolean writeToFile(String filePath, String content) throws IOException {
         File file = new File(filePath);
 
@@ -53,12 +70,18 @@ public class FileUtility {
             } catch (IOException e) {
                 throw e;
             }
-            return true; // return true if writing was successful
+            return true;
         }
 
         return false;
     }
 
+    /**
+     * Counts the number of lines in a file.
+     * @param filePath The path to the file.
+     * @return The number of lines in the file.
+     * @throws IOException if an I/O error occurs during reading.
+     */
     public static int countLines(String filePath) throws IOException {
         int lines = 0;
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -69,6 +92,13 @@ public class FileUtility {
         return lines;
     }
 
+    /**
+     * Retrieves a specific line from a file by line number.
+     * @param filePath The path to the file.
+     * @param lineNumber The line number to retrieve.
+     * @return The content of the specified line or null if the line does not exist.
+     * @throws IOException if an I/O error occurs during reading.
+     */
     public static String getLineFromFile(String filePath, int lineNumber) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -80,11 +110,15 @@ public class FileUtility {
                 }
             }
         }
-        return null; // Return null if the line number is not found
+        return null;
     }
 
+    /**
+     * Clears the contents of a file without deleting the file.
+     * @param filePath The path to the file.
+     * @throws IOException if an I/O error occurs during writing.
+     */
     public static void clearFileContents(String filePath) throws IOException {
-        try (FileWriter writer = new FileWriter(filePath, false)) {
-        }
+        try (FileWriter writer = new FileWriter(filePath, false)) {}
     }
 }

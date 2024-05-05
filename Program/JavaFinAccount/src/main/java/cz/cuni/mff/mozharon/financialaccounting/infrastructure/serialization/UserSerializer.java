@@ -6,14 +6,31 @@ import cz.cuni.mff.mozharon.financialaccounting.infrastructure.utils.HashingUtil
 
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Serializer for User objects, implementing the SerializerInterface.
+ */
 public class UserSerializer implements SerializerInterface<User> {
-    public String keyWord = "USER";
+    public static final String keyWord = "USER";
 
+    /**
+     * Serializes a User object into a string with hashed login and password.
+     *
+     * @param user the user to serialize
+     * @return a string representation of the user
+     * @throws NoSuchAlgorithmException if the hashing algorithm is not available
+     */
     @Override
     public String serialize(User user) throws NoSuchAlgorithmException {
-        return "USER" + "|" + HashingUtility.sha256(user.getLoginName()) + "|" + HashingUtility.sha256(user.getPassword());
+        return keyWord + "|" + HashingUtility.sha256(user.getLoginName()) + "|" + HashingUtility.sha256(user.getPassword());
     }
 
+    /**
+     * Deserializes a string back into a User object.
+     *
+     * @param data the string to deserialize
+     * @return the deserialized User object
+     * @throws InvalidUserException if the user data is invalid
+     */
     @Override
     public User deserialize(String data) throws InvalidUserException {
 

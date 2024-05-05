@@ -9,6 +9,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Provides methods to calculate various statistical metrics from financial records.
+ * This service is responsible for aggregating data into yearly, monthly, and daily statistics.
+ */
 public class StatisticCalculatorService {
 
     /**
@@ -98,6 +102,13 @@ public class StatisticCalculatorService {
         return dayStatistics;
     }
 
+    /**
+     * Updates the provided StatisticField based on the record's type and amount.
+     *
+     * @param statisticField The StatisticField to update.
+     * @param record The record from which to extract the data.
+     * @throws InvalidStatisticField If an invalid value is encountered during the update.
+     */
     private void updateStatisticField(StatisticField statisticField, Record record) throws InvalidStatisticField {
         Double amount = record.getAmount();
         if (record.getRecordType() == RecordType.INCOME) {

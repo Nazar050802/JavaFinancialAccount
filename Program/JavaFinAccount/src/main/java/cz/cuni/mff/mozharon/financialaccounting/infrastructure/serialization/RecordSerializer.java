@@ -11,9 +11,18 @@ import cz.cuni.mff.mozharon.financialaccounting.infrastructure.formatters.DateAn
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.formatters.RecordTypeFormatter;
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.utils.SerializerUtils;
 
+/**
+ * Serializer for Record objects, implementing the SerializerInterface.
+ */
 public class RecordSerializer implements SerializerInterface<Record> {
-    public String keyWord = "RECORD";
+    public static final String keyWord = "RECORD";
 
+    /**
+     * Serializes a Record object into a string representation.
+     *
+     * @param record the record to serialize
+     * @return the serialized string representation of the record
+     */
     @Override
     public String serialize(Record record) {
         return keyWord + "|"
@@ -25,6 +34,15 @@ public class RecordSerializer implements SerializerInterface<Record> {
                 + RecordTypeFormatter.formatForExternalUse(record.getRecordType());
     }
 
+    /**
+     * Deserializes a string back into a Record object.
+     *
+     * @param data the string to deserialize
+     * @return the deserialized Record object
+     * @throws InvalidAmountException if the amount field is invalid
+     * @throws InvalidCategoryException if the category field is invalid
+     * @throws ExceptionParseRecordType if the record type field is invalid
+     */
     @Override
     public Record deserialize(String data) throws InvalidAmountException, InvalidCategoryException, ExceptionParseRecordType {
         final int numberToStartWith = 1; // Also number of help words before first real data

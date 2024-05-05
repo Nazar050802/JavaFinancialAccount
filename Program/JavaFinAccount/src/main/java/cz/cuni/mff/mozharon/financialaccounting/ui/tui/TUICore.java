@@ -11,11 +11,17 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Main class for text user interface core functionality.
+ * It initializes controllers and manages the main execution flow of the application.
+ */
 public class TUICore {
     final static int TIME_SHOW_TUIHelloMessage = 3;
     final static int TIME_SHOW_FailedLogin = 2;
     final static int TIME_SHOW_SuccessLogin = 2;
     final static int TIME_SHOW_NEW_RECORD = 2;
+    final static int TIME_SHOW_RECORD_DELETED = 2;
+    final static int TIME_SHOW_PASSWORD_CHANGE = 2;
 
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidUserException, InvalidCategoryException, InvalidAmountException, InvalidStatisticField {
 
@@ -39,11 +45,23 @@ public class TUICore {
         AddRecordController addRecordController = new AddRecordController(controllerCore);
         ShowRecordsController showRecordsController = new ShowRecordsController(controllerCore);
         ShowStatisticsController showStatisticsController = new ShowStatisticsController(controllerCore);
+        SettingsController settingsController = new SettingsController(controllerCore);
 
-        TUIMainMenu tuiMainMenu = new TUIMainMenu(mainMenuController, addRecordController, showRecordsController, showStatisticsController);
+        TUIMainMenu tuiMainMenu = new TUIMainMenu(
+                mainMenuController,
+                addRecordController,
+                showRecordsController,
+                showStatisticsController,
+                settingsController);
+
         tuiMainMenu.mainMenu();
     }
 
+    /**
+     * Pauses the program execution for a given amount of time.
+     *
+     * @param time The number of seconds to pause.
+     */
     public static void makePause(int time) {
         try (ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1)) {
             Runnable taskTUIHelloMessage = () -> {};

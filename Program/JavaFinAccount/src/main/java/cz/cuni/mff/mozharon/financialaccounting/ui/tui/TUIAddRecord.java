@@ -6,15 +6,26 @@ import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.AddRecordControll
 
 import java.util.Scanner;
 
+/**
+ * Text User Interface for adding records to the financial accounting system.
+ */
 public class TUIAddRecord {
     private static Scanner scanner = new Scanner(System.in);
 
     private AddRecordController addRecordController;
 
+    /**
+     * Constructor for TUIAddRecord.
+     *
+     * @param addRecordController Controller for adding records.
+     */
     public TUIAddRecord(AddRecordController addRecordController) {
         this.addRecordController = addRecordController;
     }
 
+    /**
+     * Displays the menu for adding records, handles user input and interactions.
+     */
     public void printAddRecord() {
         System.out.println("+-----------------------------------+");
         System.out.println("|        Add Record to System       |");
@@ -62,6 +73,9 @@ public class TUIAddRecord {
         }
     }
 
+    /**
+     * Handles adding multiple records through prompts.
+     */
     private void addMultipleRecords() throws InvalidCategoryException, InvalidAmountException {
         System.out.print("Enter number of records to add: ");
         int count = Integer.parseInt(scanner.nextLine());
@@ -72,6 +86,9 @@ public class TUIAddRecord {
         }
     }
 
+    /**
+     * Handles adding multiple records from single line inputs.
+     */
     private void addMultipleRecordsOneLine() {
         System.out.print("Enter number of records to add: ");
         int count = Integer.parseInt(scanner.nextLine());
@@ -84,6 +101,11 @@ public class TUIAddRecord {
         }
     }
 
+    /**
+     * Adds a single record from a single line input.
+     *
+     * @param recordData Data for the record in a single line.
+     */
     private void addRecordOneLine(String recordData) {
         boolean isValidInput = false;
         while (!isValidInput) {
@@ -112,6 +134,9 @@ public class TUIAddRecord {
         }
     }
 
+    /**
+     * Adds a single record with help from prompts.
+     */
     private void addRecordWithPrompts() throws InvalidCategoryException, InvalidAmountException {
         Double amount = getDoubleInput("Enter amount:");
         String description = getStringInput("Enter description:");
@@ -123,6 +148,15 @@ public class TUIAddRecord {
         addAndSaveRecord(amount, description, dateAndTime, categoryName, recordType);
     }
 
+    /**
+     * Validates and adds a record, then saves it.
+     *
+     * @param amount       The amount of the transaction.
+     * @param description  A description for the record.
+     * @param dateAndTime  The date and time of the transaction.
+     * @param categoryName The category of the transaction.
+     * @param recordType   The type of the transaction.
+     */
     private void addAndSaveRecord(Double amount, String description, String dateAndTime, String categoryName, String recordType) throws InvalidAmountException, InvalidCategoryException {
         addRecordController.addRecord(amount, description, dateAndTime, categoryName, recordType);
         addRecordController.saveData();
@@ -133,6 +167,11 @@ public class TUIAddRecord {
         TUIClearConsole.clearConsole();
     }
 
+    /**
+     * Gets a category name from user input.
+     *
+     * @return The category name.
+     */
     private String getCategoryFromUser() throws InvalidCategoryException {
         String input;
         do {
@@ -145,12 +184,25 @@ public class TUIAddRecord {
         return input;
     }
 
+    /**
+     * Ensures that a category object exists in memory by checking its presence
+     * and creating a new one if it does not exist.
+     *
+     * @param category The name of the category to check and potentially create.
+     * @throws InvalidCategoryException If the creation of the category fails due to invalid data.
+     */
     private void createCategoryObjectInMemoryIfNotExists(String category) throws InvalidCategoryException {
         if (!validateCategory(category)) {
             createNewCategory(category);
         }
     }
 
+    /**
+     * Validates the date string to be in the correct format.
+     *
+     * @param dateStr The date string to validate.
+     * @return A reformatted valid date string.
+     */
     private static String validateAndReformatDateString(String dateStr) {
         String[] parts = dateStr.split(" ");
         if (parts.length != 5 || !isValidDate(parts)) {
@@ -161,14 +213,33 @@ public class TUIAddRecord {
         return String.format("%s %s %s 00 %s %s", parts[0], parts[1], parts[2], parts[4], parts[3]);
     }
 
+    /**
+     * Validates whether a category exists in the system.
+     *
+     * @param category The name of the category to validate.
+     * @return true if the category exists, false otherwise.
+     */
     private boolean validateCategory(String category) {
         return addRecordController.checkCategoryExists(category);
     }
 
+    /**
+     * Creates a new category and adds it to the system if it does not already exist.
+     *
+     * @param category The name of the category to create.
+     * @throws InvalidCategoryException If the creation of the category fails.
+     */
     private void createNewCategory(String category) throws InvalidCategoryException {
         addRecordController.addCategory(category);
     }
 
+    /**
+     * Validates the components of a date to ensure they form a valid date.
+     * This method checks if the day, month, hour, and minute components are within valid ranges.
+     *
+     * @param parts An array containing date components [day, month, year, hour, minute].
+     * @return true if the date components form a valid date, false if any component is out of the valid range.
+     */
     private static boolean isValidDate(String[] parts) {
         try {
             int day = Integer.parseInt(parts[0]);
@@ -187,6 +258,12 @@ public class TUIAddRecord {
         return true;
     }
 
+    /**
+     * Retrieves string input from user with a prompt.
+     *
+     * @param prompt The message to display to the user.
+     * @return The user input as a string.
+     */
     private static String getStringInput(String prompt) {
         System.out.print(prompt);
         String input;
@@ -197,6 +274,12 @@ public class TUIAddRecord {
         return input;
     }
 
+    /**
+     * Retrieves a double value input from user with a prompt.
+     *
+     * @param prompt The message to display to the user.
+     * @return The user input as a double.
+     */
     private static Double getDoubleInput(String prompt) {
         System.out.print(prompt);
         String input = scanner.nextLine();
@@ -219,9 +302,5 @@ public class TUIAddRecord {
         }
 
         return result;
-    }
-
-    private static void validateDouble() {
-
     }
 }

@@ -6,6 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Utility class for extracting and manipulating statistical data.
+ */
 public class StatisticsUtils {
 
     /**

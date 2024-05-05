@@ -5,22 +5,35 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.entities.StatisticField;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
 import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.ShowStatisticsController;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
-import java.util.LinkedHashMap;
 
+/**
+ * Handles the presentation of statistical data in the text user interface.
+ */
 public class TUIShowStatistics {
     private ShowStatisticsController controller;
     private Scanner scanner = new Scanner(System.in);
 
     private final static int GRAPH_MAX_NUMBER_OF_HASHES = 15;
 
+    /**
+     * Constructs a TUIShowStatistics instance with the provided controller.
+     *
+     * @param controller The controller used to handle statistics functionality.
+     */
     public TUIShowStatistics(ShowStatisticsController controller) {
         this.controller = controller;
     }
 
+    /**
+     * Displays options for different statistical data sets and handles user input to select them.
+     *
+     * @throws InvalidStatisticField if an invalid field is encountered while fetching statistics.
+     */
     public void displayOptions() throws InvalidStatisticField {
         boolean backToMainMenu = false;
         while (!backToMainMenu) {
@@ -60,12 +73,22 @@ public class TUIShowStatistics {
         }
     }
 
+    /**
+     * Handles the interaction for deciding whether to return to the main menu or continue viewing statistics.
+     *
+     * @return true if the user chooses to go back to the main menu, false otherwise.
+     */
     private boolean postGraphMenu() {
         System.out.println("\nDo you want to go back to the statistics menu? (Y/N)");
         String response = scanner.nextLine().trim().toUpperCase();
         return !response.equals("Y");
     }
 
+    /**
+     * Displays yearly statistics and handles its visualization.
+     *
+     * @throws InvalidStatisticField If there is an issue retrieving the statistics.
+     */
     private void displayYearlyStatistics() throws InvalidStatisticField {
         Map<Integer, StatisticField> stats = controller.getYearlyStatistics();
 
@@ -77,7 +100,7 @@ public class TUIShowStatistics {
                     modifyMapKeysWithAdditionalText(
                             StatisticsUtils.sortKeysAndConvertToString(StatisticsUtils.extractYearsIncome(stats), true),
                             "Year: ",
-                            ""
+                            "  "
                     ),
 
                     GRAPH_MAX_NUMBER_OF_HASHES,
@@ -90,7 +113,7 @@ public class TUIShowStatistics {
                     modifyMapKeysWithAdditionalText(
                             StatisticsUtils.sortKeysAndConvertToString(StatisticsUtils.extractYearsExpense(stats), true),
                             "Year: ",
-                            ""
+                            "  "
                     ),
 
                     GRAPH_MAX_NUMBER_OF_HASHES,
@@ -103,7 +126,7 @@ public class TUIShowStatistics {
                     modifyMapKeysWithAdditionalText(
                             StatisticsUtils.sortKeysAndConvertToString(StatisticsUtils.extractYearsProfit(stats), true),
                             "Year: ",
-                            ""
+                            "  "
                     ),
 
                     GRAPH_MAX_NUMBER_OF_HASHES,
@@ -113,6 +136,11 @@ public class TUIShowStatistics {
         }
     }
 
+    /**
+     * Displays monthly statistics for a selected year and handles its visualization.
+     *
+     * @throws InvalidStatisticField If there is an issue retrieving the statistics.
+     */
     private void displayMonthlyStatistics() throws InvalidStatisticField {
 
         Map<Integer, Map<Integer, StatisticField>> stats = controller.getMonthlyStatistics();
@@ -131,7 +159,7 @@ public class TUIShowStatistics {
                     modifyMapKeysWithAdditionalText(
                             StatisticsUtils.sortKeysAndConvertToString(StatisticsUtils.extractMonthlyIncome(stats, year), true),
                             "Month: ",
-                            String.format(".%d", year)
+                            String.format(".%d  ", year)
                     ),
 
                     GRAPH_MAX_NUMBER_OF_HASHES,
@@ -144,7 +172,7 @@ public class TUIShowStatistics {
                     modifyMapKeysWithAdditionalText(
                             StatisticsUtils.sortKeysAndConvertToString(StatisticsUtils.extractMonthlyExpense(stats, year), true),
                             "Month: ",
-                            String.format(".%d", year)
+                            String.format(".%d  ", year)
                     ),
 
                     GRAPH_MAX_NUMBER_OF_HASHES,
@@ -157,7 +185,7 @@ public class TUIShowStatistics {
                     modifyMapKeysWithAdditionalText(
                             StatisticsUtils.sortKeysAndConvertToString(StatisticsUtils.extractMonthlyProfit(stats, year), true),
                             "Month: ",
-                            String.format(".%d", year)
+                            String.format(".%d  ", year)
                     ),
 
                     GRAPH_MAX_NUMBER_OF_HASHES,
@@ -167,6 +195,11 @@ public class TUIShowStatistics {
         }
     }
 
+    /**
+     * Displays daily statistics for a selected month and year, handling its visualization.
+     *
+     * @throws InvalidStatisticField If there is an issue retrieving the statistics.
+     */
     private void displayDailyStatistics() throws InvalidStatisticField {
 
         Map<Integer, Map<Integer, Map<Integer, StatisticField>>> stats = controller.getDailyStatistics();
@@ -189,7 +222,7 @@ public class TUIShowStatistics {
                     modifyMapKeysWithAdditionalText(
                             StatisticsUtils.sortKeysAndConvertToString(StatisticsUtils.extractDailyIncome(stats, year, month), true),
                             "Day: ",
-                            String.format(".%d.%d", month, year)
+                            String.format(".%d.%d  ", month, year)
                     ),
 
                     GRAPH_MAX_NUMBER_OF_HASHES,
@@ -202,7 +235,7 @@ public class TUIShowStatistics {
                     modifyMapKeysWithAdditionalText(
                             StatisticsUtils.sortKeysAndConvertToString(StatisticsUtils.extractDailyExpense(stats, year, month), true),
                             "Day: ",
-                            String.format(".%d.%d", month, year)
+                            String.format(".%d.%d  ", month, year)
                     ),
 
                     GRAPH_MAX_NUMBER_OF_HASHES,
@@ -215,7 +248,7 @@ public class TUIShowStatistics {
                     modifyMapKeysWithAdditionalText(
                             StatisticsUtils.sortKeysAndConvertToString(StatisticsUtils.extractDailyProfit(stats, year, month), true),
                             "Day: ",
-                            String.format(".%d.%d", month, year)
+                            String.format(".%d.%d  ", month, year)
                     ),
 
                     GRAPH_MAX_NUMBER_OF_HASHES,
@@ -225,6 +258,11 @@ public class TUIShowStatistics {
         }
     }
 
+    /**
+     * Retrieves a non-empty string from input, prompting repeatedly if the input is empty.
+     *
+     * @return A non-empty string input from the user.
+     */
     private String getStringFromInput() {
         String input;
         while((input = scanner.nextLine()).isEmpty()){
@@ -251,7 +289,14 @@ public class TUIShowStatistics {
                 ));
     }
 
-    public static void printGraph(Map<String, Double> fieldsToPrintWithValues, int maxLength, boolean showBigLegend) {
+    /**
+     * Prints a graphical representation of statistics data.
+     *
+     * @param fieldsToPrintWithValues A map containing data to be printed in graph form.
+     * @param maxLength Maximum length of the graph bar.
+     * @param showAdditionalLegend Whether to show legend explaining the graph.
+     */
+    public static void printGraph(Map<String, Double> fieldsToPrintWithValues, int maxLength, boolean showAdditionalLegend) {
 
         double maxValue = fieldsToPrintWithValues.values().stream()
                 .mapToDouble(Math::abs)
@@ -288,7 +333,7 @@ public class TUIShowStatistics {
         System.out.printf("  # = %.2f\n", unitValue);
         System.out.printf("  * is more than 0 but less than %.2f\n", unitValue);
 
-        if(showBigLegend){
+        if(showAdditionalLegend){
             System.out.println("\n |# -> income");
             System.out.println(" | -> 0 value");
             System.out.println("#| -> expense");
@@ -298,6 +343,16 @@ public class TUIShowStatistics {
 
     }
 
+    /**
+     * Generates a padded string of graph symbols based on the value and unit value provided.
+     * The graph visually represents data values as a series of hash marks.
+     * If the value is small but non-zero, it is represented by an asterisk.
+     *
+     * @param maxLength The maximum length of the graph symbols.
+     * @param value The value to represent graphically.
+     * @param unitValue The unit value each graph symbol (hash mark) represents.
+     * @return A string of graph symbols padded to the specified length.
+     */
     private static String getPaddedGraphSymbols(int maxLength, Double value, double unitValue) {
         String graphSymbols;
         if (value != 0) {

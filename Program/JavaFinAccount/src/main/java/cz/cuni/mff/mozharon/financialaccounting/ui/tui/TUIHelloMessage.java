@@ -3,7 +3,14 @@ package cz.cuni.mff.mozharon.financialaccounting.ui.tui;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Provides a welcome message for the application in the text-based user interface.
+ */
 public class TUIHelloMessage {
+    /**
+     * Main method to display the welcome message.
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         String programName = "Financial Application";
         String authorName = "Nazar Mozharov";
@@ -19,6 +26,10 @@ public class TUIHelloMessage {
         printFramedMessage(message);
     }
 
+    /**
+     * Prints a message surrounded by a decorative frame.
+     * @param message The message to be framed and printed.
+     */
     private static void printFramedMessage(String message) {
         String[] lines = message.split("\n");
         int maxLength = 0;
