@@ -34,6 +34,9 @@ public class TUIShowRecords {
     public void showMenu() {
         boolean back = false;
         while (!back) {
+            System.out.println("+-----------------------------------+");
+            System.out.println("|            Show Records           |");
+            System.out.println("+-----------------------------------+");
             System.out.println("1. Show all records sorted by date");
             System.out.println("2. Show records by specific date");
             System.out.println("3. Show records by category");

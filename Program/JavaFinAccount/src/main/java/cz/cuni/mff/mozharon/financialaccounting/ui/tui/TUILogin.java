@@ -6,8 +6,6 @@ import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.LoginController;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-import static cz.cuni.mff.mozharon.financialaccounting.ui.tui.TUICore.makePause;
-
 /**
  * Handles the login process in the text-based user interface.
  */
@@ -31,6 +29,12 @@ public class TUILogin {
     public void loginMessage() throws NoSuchAlgorithmException, InvalidUserException {
         System.out.println("+-----------------------------------+");
         System.out.println("|         Login to the System       |");
+        System.out.println("+-----------------------------------+\n");
+        System.out.println("+-----------------------------------+");
+        System.out.println("| If you are using this application |");
+        System.out.println("| for the first time, enter your    |");
+        System.out.println("| username and password, which will |");
+        System.out.println("| be used to log in.                |");
         System.out.println("+-----------------------------------+\n");
 
         String username = promptForUsername();
@@ -70,7 +74,7 @@ public class TUILogin {
      */
     private void incorrectLogin() throws NoSuchAlgorithmException, InvalidUserException {
         System.out.println("+-----------------------------------+");
-        System.out.println("|       Failed to Login Try Again   |");
+        System.out.println("|      Failed to Login Try Again    |");
         System.out.println("+-----------------------------------+\n");
 
         TUICore.makePause(TUICore.TIME_SHOW_FailedLogin);
@@ -89,16 +93,13 @@ public class TUILogin {
     }
 
     /**
-     * Prompts the user for a password securely.
+     * Prompts the user for a password.
      * @return The entered password.
      */
     private static String promptForPassword() {
-        // Attempt to use Console for password input
-        if (System.console() != null) {
-            return new String(System.console().readPassword("Enter your password: "));
-        } else {
-            System.out.print("Enter your password (IDE mode, input may be visible): ");
-            return scanner.nextLine();
-        }
+
+        System.out.print("Enter your password: ");
+        return scanner.nextLine();
+
     }
 }

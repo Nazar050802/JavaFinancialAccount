@@ -29,8 +29,11 @@ public class TUISettings {
     public void displaySettingsMenu() {
         int option = 0;
         while (true) {
+            System.out.println("+-----------------------------------+");
+            System.out.println("|              Settings             |");
+            System.out.println("+-----------------------------------+");
             System.out.println("1. Change Password");
-            System.out.println("2. Back to Main Menu");
+            System.out.println("2. Return to Main Menu");
             System.out.print("Choose an option: ");
             try {
                 option = Integer.parseInt(scanner.nextLine());
@@ -77,18 +80,12 @@ public class TUISettings {
     }
 
     /**
-     * Prompts the user to enter a password, supporting hidden input in compatible environments.
+     * Prompts the user to enter a password.
      *
      * @return A string representing the password entered by the user.
      */
     private String promptForPassword() {
-
-        if (System.console() != null) {
-            return new String(System.console().readPassword("Enter your new password: "));
-        } else {
-            System.out.print("Enter your new password (IDE mode, input may be visible): ");
-            return scanner.nextLine();
-        }
-
+        System.out.print("Enter your password: ");
+        return scanner.nextLine();
     }
 }

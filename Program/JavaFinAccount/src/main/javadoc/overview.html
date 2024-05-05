@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Overview</title>
+</head>
+<body>
+<header>
+    <h1>Financial Accounting System Overview</h1>
+</header>
+<section>
+    <h2>Project Description</h2>
+    <p>
+        The Financial Accounting System is designed to manage and analyze financial records. The application provides features such as:
+    </p>
+    <ul>
+        <li>Adding records: Users can enter details about expenses and income specifying the amount, category (e.g., food, entertainment, transportation), and date.</li>
+        <li>Viewing data: Users can review their financial records through a user-friendly interface.</li>
+        <li>Statistics: The system generates graphical statistics of expenses and income, helping users visualize their financial health.</li>
+        <li>Data storage: Automatically saves information to a text file, allowing for data persistence between sessions.</li>
+        <li>Control: Operates through a console-based user interface where users navigate and interact via menu selections and data inputs.</li>
+    </ul>
+</section>
+<section>
+    <h2>Architecture and Class Structure</h2>
+    <p>
+        The application is structured using the onion architecture to ensure robust scalability and maintainability. This architecture centers the application's domain logic, surrounded by layers handling application services, infrastructure, and the user interface. Below is a breakdown of each layer and its components:
+    </p>
+    <ol>
+        <li>
+            <strong>Domain Layer:</strong><br> This is the core of the application, containing essential entities such as:
+            <ul>
+                <li><code>Record</code></li>
+                <li><code>Category</code></li>
+                <li><code>User</code></li>
+                <li><code>DateAndTime</code></li>
+            </ul>
+            Value objects like <code>StatisticField</code> are used for specific data operations, primarily statistical computations.
+        </li>
+        <li>
+            <strong>Application Services Layer:</strong><br> Acts as a mediator between the domain and infrastructure layers, with key services including:
+            <ul>
+                <li><code>RecordService</code></li>
+                <li><code>UserService</code></li>
+                <li><code>CategoryService</code></li>
+                <li><code>StatisticsService</code></li>
+            </ul>
+            These services manage data flow and enforce business rules by delegating computations and operations to the domain layer. This structured approach ensures that operations are processed efficiently, aligning with the core business logic encapsulated in the domain.
+        </li>
+        <li>
+            <strong>Infrastructure Layer:</strong><br> Implements interfaces defined by the core for data persistence and operations, comprising:
+            <ul>
+                <li><code>InMemoryRecordRepository</code></li>
+                <li><code>InMemoryCategoryRepository</code></li>
+                <li><code>InMemoryUserRepository</code></li>
+            </ul>
+            This layer also includes serialization components like <code>RecordSerializer</code> for data integrity and conversion. It handles detailed interactions with data, particularly managing file-based data storage and in-memory data repositories.
+        </li>
+        <li>
+            <strong>User Interface Layer:</strong><br> The top layer that interfaces directly with users through a Text User Interface (TUI). TUI uses controllers from the Controllers package enhancing user interaction with data managed at the infrastructure level and enabling access to application services for data processing.
+        </li>
+    </ol>
+
+</section>
+</body>
+</html>

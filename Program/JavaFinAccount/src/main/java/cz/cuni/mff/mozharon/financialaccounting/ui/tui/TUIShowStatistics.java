@@ -37,6 +37,9 @@ public class TUIShowStatistics {
     public void displayOptions() throws InvalidStatisticField {
         boolean backToMainMenu = false;
         while (!backToMainMenu) {
+            System.out.println("+-----------------------------------+");
+            System.out.println("|            Show Statistic         |");
+            System.out.println("+-----------------------------------+");
             System.out.println("Select statistic to display:");
             System.out.println("1. Yearly Statistics");
             System.out.println("2. Monthly Statistics");

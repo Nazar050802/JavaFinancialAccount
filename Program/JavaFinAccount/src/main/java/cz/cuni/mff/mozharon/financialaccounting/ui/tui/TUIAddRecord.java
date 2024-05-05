@@ -36,9 +36,15 @@ public class TUIAddRecord {
             System.out.println("Choose record adding mode:");
             System.out.println("1. Multiple Records");
             System.out.println("2. Single Record");
-            System.out.print("Enter your choice (1 or 2): ");
+            System.out.println("3. Return to Main Menu");
+            System.out.print("Enter your choice: ");
+
             int mode = Integer.parseInt(scanner.nextLine());
             TUIClearConsole.clearConsole();
+
+            if(mode == 3) {
+                return;
+            }
 
             boolean isMultiple = mode == 1;
 

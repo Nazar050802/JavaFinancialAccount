@@ -99,7 +99,7 @@ public class TUIMainMenu {
         System.out.println(border);
         System.out.println("| 1. Add Record                     |");
         System.out.println("| 2. Show Records                   |");
-        System.out.println("| 3. Show Statistics                |");
+        System.out.println("| 3. Show Statistic                 |");
         System.out.println("| 4. Settings                       |");
         System.out.println("| 5. Exit                           |");
         System.out.println(border + "\n");

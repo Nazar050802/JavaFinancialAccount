@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * Main class for text user interface core functionality.
  * It initializes controllers and manages the main execution flow of the application.
  */
-public class TUICore {
+public class TUICore extends TUIHelloMessage {
     final static int TIME_SHOW_TUIHelloMessage = 3;
     final static int TIME_SHOW_FailedLogin = 2;
     final static int TIME_SHOW_SuccessLogin = 2;
@@ -23,9 +23,9 @@ public class TUICore {
     final static int TIME_SHOW_RECORD_DELETED = 2;
     final static int TIME_SHOW_PASSWORD_CHANGE = 2;
 
-    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidUserException, InvalidCategoryException, InvalidAmountException, InvalidStatisticField {
+    public static void startCore() throws NoSuchAlgorithmException, InvalidUserException, InvalidCategoryException, InvalidAmountException, InvalidStatisticField {
 
-        TUIHelloMessage.main(args);
+        TUIHelloMessage.showHelloMessage();
 
         // Show hello message for 3 seconds
         makePause(TIME_SHOW_TUIHelloMessage);

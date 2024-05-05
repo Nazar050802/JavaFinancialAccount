@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
  * The main class for the Financial Accounting application.
  * This class is responsible for initializing and starting the application.
  */
-public class Application {
+public class Application extends TUICore {
     /**
      * Main method that serves as the entry point for the application.
      * Initializes the core components and starts the user interface.
@@ -26,7 +26,7 @@ public class Application {
      */
     public static void main(String[] args) throws  InvalidAmountException, InvalidStatisticField, InvalidCategoryException, InvalidUserException, NoSuchAlgorithmException {
 
-        TUICore.main(new String[]{});
+        TUICore.startCore();
 
     }
 

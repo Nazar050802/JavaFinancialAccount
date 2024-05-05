@@ -9,9 +9,8 @@ import java.time.format.DateTimeFormatter;
 public class TUIHelloMessage {
     /**
      * Main method to display the welcome message.
-     * @param args Command line arguments (not used).
      */
-    public static void main(String[] args) {
+    public static void showHelloMessage() {
         String programName = "Financial Application";
         String authorName = "Nazar Mozharov";
         LocalDate currentDate = LocalDate.now();
