@@ -1,11 +1,14 @@
 cz.cuni.mff.mozharon
+cz.cuni.mff.mozharon.financialaccounting.application
 cz.cuni.mff.mozharon.financialaccounting.application.config
 cz.cuni.mff.mozharon.financialaccounting.application.services
 cz.cuni.mff.mozharon.financialaccounting.application.utils
+cz.cuni.mff.mozharon.financialaccounting.domain
 cz.cuni.mff.mozharon.financialaccounting.domain.entities
 cz.cuni.mff.mozharon.financialaccounting.domain.exceptions
 cz.cuni.mff.mozharon.financialaccounting.domain.repositories
 cz.cuni.mff.mozharon.financialaccounting.domain.services
+cz.cuni.mff.mozharon.financialaccounting.infrastructure
 cz.cuni.mff.mozharon.financialaccounting.infrastructure.common
 cz.cuni.mff.mozharon.financialaccounting.infrastructure.exceptions
 cz.cuni.mff.mozharon.financialaccounting.infrastructure.files
@@ -13,5 +16,6 @@ cz.cuni.mff.mozharon.financialaccounting.infrastructure.formatters
 cz.cuni.mff.mozharon.financialaccounting.infrastructure.repositories
 cz.cuni.mff.mozharon.financialaccounting.infrastructure.serialization
 cz.cuni.mff.mozharon.financialaccounting.infrastructure.utils
+cz.cuni.mff.mozharon.financialaccounting.ui
 cz.cuni.mff.mozharon.financialaccounting.ui.controllers
 cz.cuni.mff.mozharon.financialaccounting.ui.tui
