@@ -40,10 +40,10 @@ public class TUIHelloMessage {
 
         String border = "+" + "-".repeat(maxLength + 4) + "+";
 
-        System.out.println(border); // Top border
+        System.out.println(border);
         for (String line : lines) {
             System.out.printf("|  %-" + maxLength + "s  |\n", line);
         }
-        System.out.println(border); // Bottom border
+        System.out.println(border);
     }
 }

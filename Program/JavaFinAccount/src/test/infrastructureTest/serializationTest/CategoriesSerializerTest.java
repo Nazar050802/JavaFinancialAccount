@@ -6,7 +6,9 @@ import cz.cuni.mff.mozharon.financialaccounting.infrastructure.serialization.Cat
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Tests for the CategoriesSerializer class.

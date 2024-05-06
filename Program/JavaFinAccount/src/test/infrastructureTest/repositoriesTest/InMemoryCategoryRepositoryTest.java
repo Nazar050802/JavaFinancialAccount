@@ -1,15 +1,15 @@
 package infrastructureTest.repositoriesTest;
 
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Category;
-import cz.cuni.mff.mozharon.financialaccounting.infrastructure.repositories.InMemoryCategoryRepository;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidCategoryException;
-
+import cz.cuni.mff.mozharon.financialaccounting.infrastructure.repositories.InMemoryCategoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test suite for InMemoryCategoryRepository

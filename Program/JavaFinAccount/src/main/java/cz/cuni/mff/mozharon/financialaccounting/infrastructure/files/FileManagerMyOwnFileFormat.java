@@ -63,13 +63,13 @@ public class FileManagerMyOwnFileFormat implements FileManager {
                     String[] parts = line.split("\\|");
 
                     switch (parts[0]) {
-                        case "USER":
+                        case UserSerializer.keyWord:
                             processUserDataLine(userServiceWithCurrentCredentials, line, serviceContainer);
                             break;
-                        case "CATEGORY":
+                        case CategoriesSerializer.keyWord:
                             processCategoryDataLine(line, serviceContainer);
                             break;
-                        case "RECORD":
+                        case RecordSerializer.keyWord:
                             processRecordDataLine(line, serviceContainer);
                             break;
                     }

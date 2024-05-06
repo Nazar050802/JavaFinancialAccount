@@ -4,8 +4,6 @@ import cz.cuni.mff.mozharon.financialaccounting.ui.controllers.SettingsControlle
 
 import java.util.Scanner;
 
-import static cz.cuni.mff.mozharon.financialaccounting.ui.tui.TUICore.makePause;
-
 /**
  * Text-based user interface component for managing application settings.
  */

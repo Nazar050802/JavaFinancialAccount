@@ -36,7 +36,9 @@ class RecordServiceTest {
     void addRecord_ShouldReturnAddedRecord() throws InvalidAmountException, InvalidCategoryException {
         // Prepare DateAndTime and Category mocks to prevent constructor issues
         DateAndTime dateAndTime = mock(DateAndTime.class);
-        Category category = new Category("Utilities"); // Assuming Category constructor is not problematic
+
+        // Assuming Category constructor is not problematic
+        Category category = new Category("Utilities");
 
         Record record = new Record(1L, 100.0, "Test Description", dateAndTime, category, RecordType.EXPENSE);
         when(recordRepository.addRecord(any(Record.class))).thenReturn(record);

@@ -8,13 +8,13 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidAmountE
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidCategoryException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidDateException;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidTimeException;
-import cz.cuni.mff.mozharon.financialaccounting.infrastructure.exceptions.ExceptionParseRecordType;
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.serialization.RecordSerializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Test class for RecordSerializer.

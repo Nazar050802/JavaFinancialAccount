@@ -3,10 +3,10 @@ package infrastructureTest.repositoriesTest;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.User;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidUserException;
 import cz.cuni.mff.mozharon.financialaccounting.infrastructure.repositories.InMemoryUserRepository;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

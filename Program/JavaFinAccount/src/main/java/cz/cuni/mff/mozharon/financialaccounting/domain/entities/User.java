@@ -4,7 +4,7 @@ import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidUserExc
 
 /**
  * Represents a user within the financial accounting application.
- * This class stores user-specific details like login name, password, and their hashed counterparts.
+ * This class stores user-specific details like login name, password, and their hashed analogs.
  */
 public class User {
     private String loginName;

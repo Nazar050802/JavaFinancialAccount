@@ -3,7 +3,6 @@ package domainTest.servicesTest;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.DateAndTime;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.Record;
 import cz.cuni.mff.mozharon.financialaccounting.domain.entities.RecordType;
-import cz.cuni.mff.mozharon.financialaccounting.domain.entities.StatisticField;
 import cz.cuni.mff.mozharon.financialaccounting.domain.exceptions.InvalidStatisticField;
 import cz.cuni.mff.mozharon.financialaccounting.domain.services.StatisticCalculatorService;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,11 +10,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 class StatisticCalculatorServiceTest {
 
@@ -44,16 +44,13 @@ class StatisticCalculatorServiceTest {
     @Test
     @DisplayName("Calculate yearly statistics with valid records")
     void calculateYearlyStatistics() throws InvalidStatisticField {
-        // Prepare data
         List<Record> records = new ArrayList<>();
         when(record.getAmount()).thenReturn(100.0);
         when(record.getRecordType()).thenReturn(RecordType.INCOME);
         records.add(record);
 
-        // Act
         var result = service.calculateYearStatistic(records);
 
-        // Assert
         assertFalse(result.isEmpty());
         assertTrue(result.containsKey(2020));
         assertEquals(100.0, result.get(2020).getIncome());
@@ -62,16 +59,13 @@ class StatisticCalculatorServiceTest {
     @Test
     @DisplayName("Calculate monthly statistics and verify correct aggregation")
     void calculateMonthlyStatistics() throws InvalidStatisticField {
-        // Prepare data
         List<Record> records = new ArrayList<>();
         when(record.getAmount()).thenReturn(200.0);
         when(record.getRecordType()).thenReturn(RecordType.EXPENSE);
         records.add(record);
 
-        // Act
         var result = service.calculateMonthStatistic(records);
 
-        // Assert
         assertFalse(result.isEmpty());
         assertTrue(result.get(2020).containsKey(5));
         assertEquals(200.0, result.get(2020).get(5).getExpense());
@@ -80,16 +74,13 @@ class StatisticCalculatorServiceTest {
     @Test
     @DisplayName("Calculate daily statistics for mixed record types")
     void calculateDayStatistics() throws InvalidStatisticField {
-        // Prepare data
         List<Record> records = new ArrayList<>();
         when(record.getAmount()).thenReturn(300.0);
         when(record.getRecordType()).thenReturn(RecordType.INCOME);
         records.add(record);
 
-        // Act
         var result = service.calculateDayStatistic(records);
 
-        // Assert
         assertFalse(result.isEmpty());
         assertTrue(result.get(2020).get(5).containsKey(15));
         assertEquals(300.0, result.get(2020).get(5).get(15).getIncome());

@@ -49,10 +49,10 @@ public class TUIMainMenu {
      */
     public void mainMenu() throws InvalidCategoryException, InvalidAmountException, InvalidStatisticField {
         String username = mainMenuController.getLoginName();
-        displayGreeting(username);
 
         boolean running = true;
         while (running) {
+            displayGreeting(username);
             displayMenu();
             int choice = getChoice();
             switch (choice) {
